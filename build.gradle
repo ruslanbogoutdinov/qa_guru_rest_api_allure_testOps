@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def restAssuredVersion = "5.4.0"
+
+dependencies {
+    testImplementation (
+            "org.junit.jupiter:junit-jupiter:5.9.3",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "io.rest-assured:json-schema-validator:$restAssuredVersion"
+    )
+}
+
+test{
+    useJUnitPlatform()
+
+    testLogging{
+        lifecycle{
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
