@@ -12,18 +12,18 @@ import static org.hamcrest.Matchers.is;
 public class SelenoidTests {
     @Test
     void checkTotal(){
-        // Три этапа жизнедеятельности теста (наследовано от BDD подхода) given-when-then в языке описания
+        // три этапа жизнедеятельности теста (наследовано от BDD подхода) given-when-then в языке описания
         // сценариев Gherkin
         // given() - прекондишены, начальный конфиг типо Configuration.browser = "chrome"
         // если в данном блоке ничего не указать, то будет применен дефолтный конфиг (как и в selenide)
         // если данные блоки пусты, их в принципе можно и не писать, а начать тест сразу с "get()"
         given()
                 // when() - когда делаем какое-то действие
-                .when()
+        .when()
                 // get() - как open() в selenide
                 .get("https://selenoid.autotests.cloud/status")
                 // then() - проверка
-                .then()
+        .then()
                 .body("total", is(20));
     }
 
@@ -69,7 +69,6 @@ public class SelenoidTests {
     void checkChromeVersion(){
         given()
                 .log().uri()
-                //.log().body() // для post запросов
         .when()
                 .get("https://selenoid.autotests.cloud/status")
         .then()
@@ -85,7 +84,6 @@ public class SelenoidTests {
         String expectedResponse = "{\"total\":20,\"used\":0,\"queued\":0,\"pending\":0,\"browsers\":{\"chrome\":{\"100.0\":{},\"120.0\":{},\"121.0\":{},\"122.0\":{},\"99.0\":{}},\"firefox\":{\"122.0\":{},\"123.0\":{}},\"opera\":{\"106.0\":{},\"107.0\":{}}}}";
         String actualResponse = given()
                 .log().uri()
-                //.log().body() // для post запросов
         .when()
                 .get("https://selenoid.autotests.cloud/status")
         .then()
@@ -104,7 +102,6 @@ public class SelenoidTests {
 
         Integer actualTotal = given()
                 .log().uri()
-                //.log().body() // для post запросов
         .when()
                 .get("https://selenoid.autotests.cloud/status")
         .then()
@@ -123,7 +120,6 @@ public class SelenoidTests {
     void checkJsonScheme(){
         given()
                 .log().uri()
-                //.log().body() // для post запросов
         .when()
                 .get("https://selenoid.autotests.cloud/status")
         .then()

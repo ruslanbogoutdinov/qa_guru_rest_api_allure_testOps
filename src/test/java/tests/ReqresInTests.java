@@ -32,7 +32,7 @@ public class ReqresInTests {
     }
     // негативный тест
     @Test
-    void unSuccessfulLoginTestWithMissinArgument(){
+    void unSuccessfulLoginTestWithMissingArgument(){
         String body = "{\n" +
                 "    \"password\": \"cityslicka\"\n" +
                 "}";
