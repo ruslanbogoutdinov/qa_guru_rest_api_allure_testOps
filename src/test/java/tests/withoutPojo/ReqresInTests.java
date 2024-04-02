@@ -1,4 +1,4 @@
-package tests;
+package tests.withoutPojo;
 
 import org.junit.jupiter.api.Test;
 
