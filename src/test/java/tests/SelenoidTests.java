@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -10,8 +12,10 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 
+@Feature("Selenide tests with PO")
 public class SelenoidTests {
     @Test
+    @Story("Check total with PO")
     void checkTotal(){
         // три этапа жизнедеятельности теста (наследовано от BDD подхода) given-when-then в языке описания
         // сценариев Gherkin
@@ -30,6 +34,7 @@ public class SelenoidTests {
 
     // проверка статуса
     @Test
+    @Story("Check total with PO")
     void checkTotalWithStatusCode200(){
         get("https://selenoid.autotests.cloud/status")
                 .then()
@@ -39,6 +44,7 @@ public class SelenoidTests {
 
     // полное логирование
     @Test
+    @Story("Check total with PO")
     void checkTotalWithAllLogs(){
         given()
                 // логируем запрос
@@ -53,6 +59,7 @@ public class SelenoidTests {
 
     // выборочное логирование
     @Test
+    @Story("Check total with PO")
     void checkTotalWithSomeLogs(){
         given()
                 .log().uri()
@@ -67,6 +74,7 @@ public class SelenoidTests {
 
     // проверка внутреннего элемента
     @Test
+    @Story("Check chrome with PO")
     void checkChromeVersion(){
         given()
                 .log().uri()
@@ -99,6 +107,7 @@ public class SelenoidTests {
 
     // Good practice
     @Test
+    @Story("Check response with PO")
     void checkResponseGoodPractice(){
         Integer expectedTotal = 20;
 
@@ -119,6 +128,7 @@ public class SelenoidTests {
     // вытаскиваем Json схему через сайт 'https://www.liquid-technologies.com/online-json-to-schema-converter'
     // создаем файл '.json' в папке 'resources' и вставляем туда сгенерированную схему
     @Test
+    @Story("Check JSON with PO")
     void checkJsonScheme(){
         given()
                 .log().uri()

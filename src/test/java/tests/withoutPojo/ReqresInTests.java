@@ -1,14 +1,18 @@
 package tests.withoutPojo;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
+@Feature("Not extended tests")
 public class ReqresInTests {
     // тест с post запросом
     @Test
+    @Story("Successful user login")
     void successfulLoginTest(){
         String body = "{\n" +
                 "    \"email\": \"eve.holt@reqres.in\",\n" +
@@ -32,6 +36,7 @@ public class ReqresInTests {
     }
     // негативный тест
     @Test
+    @Story("Unsuccessful user login")
     void unSuccessfulLoginTestWithMissingArgument(){
         String body = "{\n" +
                 "    \"password\": \"cityslicka\"\n" +
