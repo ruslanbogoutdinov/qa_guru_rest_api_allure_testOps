@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.qameta.allure.restassured.AllureRestAssured;
 import models.lombok.LoginBodyLombokModel;
@@ -22,6 +23,7 @@ import static specs.LoginSpecs.loginRequestSpec;
 import static specs.LoginSpecs.loginResponseSpec;
 
 @Feature("Extended tests")
+@Owner("Ruslan Bogoutdinov")
 public class ReqresInExtendedTests {
     // тест в стиле POJO
     // POJO - Plain old Java object (старый добрый Java-объект)
