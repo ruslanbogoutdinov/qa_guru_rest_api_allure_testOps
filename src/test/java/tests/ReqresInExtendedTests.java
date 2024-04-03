@@ -1,10 +1,12 @@
 package tests;
 
+import io.qameta.allure.Story;
 import io.qameta.allure.restassured.AllureRestAssured;
 import models.lombok.LoginBodyLombokModel;
 import models.lombok.LoginResponseLombokModel;
 import models.pojo.LoginBodyPojoModel;
 import models.pojo.LoginResponsePojoModel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static helpers.CustomAllureListener.withCustomTemplates;
@@ -128,6 +130,8 @@ public class ReqresInExtendedTests {
 
     // тест в стиле Lombok с Allure с кастомизацией и со степами
     @Test
+    @Story("Successful user login")
+    @DisplayName("Successful user login with lombok, custom allure and steps")
     void successfulLoginWithLombokAndCustomAllureStepsTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
