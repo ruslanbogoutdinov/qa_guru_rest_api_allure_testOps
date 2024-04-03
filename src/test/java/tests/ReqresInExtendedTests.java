@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.restassured.AllureRestAssured;
 import models.lombok.LoginBodyLombokModel;
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.*;
 import static specs.LoginSpecs.loginRequestSpec;
 import static specs.LoginSpecs.loginResponseSpec;
 
+@Feature("Extended tests")
 public class ReqresInExtendedTests {
     // тест в стиле POJO
     // POJO - Plain old Java object (старый добрый Java-объект)
