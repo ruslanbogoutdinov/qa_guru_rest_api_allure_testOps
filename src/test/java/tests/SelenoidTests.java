@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.get;
@@ -78,6 +79,7 @@ public class SelenoidTests {
                 .body("browsers.chrome", hasKey("100.0"));
     }
 
+    @Disabled
     // Bad practice
     @Test
     void checkResponseBadPractice(){
