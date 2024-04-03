@@ -158,6 +158,7 @@ public class ReqresInExtendedTests {
                 .isEqualTo("QpwL5tke4Pnpja7X4"));
     }
 
+    @Story("Successful user login")
     // тест в стиле Lombok с Allure с кастомизацией, со степами и с спецификациями
     @Test
     void successfulLoginWithLombokAndCustomAllureStepsAndSpecsTest(){
