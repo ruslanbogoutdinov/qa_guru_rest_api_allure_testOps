@@ -24,6 +24,7 @@ public class ReqresInExtendedTests {
     // тест в стиле POJO
     // POJO - Plain old Java object (старый добрый Java-объект)
     @Test
+    @Story("Successful user login")
     void successfulLoginWithPojoTest(){
         LoginBodyPojoModel loginBodyPojoModel = new LoginBodyPojoModel();
         loginBodyPojoModel.setEmail("eve.holt@reqres.in");
@@ -56,6 +57,7 @@ public class ReqresInExtendedTests {
 
     // тест в стиле Lombok
     @Test
+    @Story("Successful user login")
     void successfulLoginWithLombokTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
@@ -79,6 +81,7 @@ public class ReqresInExtendedTests {
 
     // тест в стиле Lombok с Allure
     @Test
+    @Story("Successful user login")
     void successfulLoginWithLombokAndAllureTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
@@ -107,6 +110,7 @@ public class ReqresInExtendedTests {
     // внутри папки 'tpl' создаем два 'ftl' файла 'request' и 'response' и запонляем нужными данными
     // в дериктории проекта создаем папку 'helpers' и внутри создаем класс 'CustomAllureListener' с нужным кодом
     @Test
+    @Story("Successful user login")
     void successfulLoginWithLombokAndCustomAllureTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
@@ -158,9 +162,9 @@ public class ReqresInExtendedTests {
                 .isEqualTo("QpwL5tke4Pnpja7X4"));
     }
 
-    @Story("Successful user login")
     // тест в стиле Lombok с Allure с кастомизацией, со степами и с спецификациями
     @Test
+    @Story("Successful user login")
     void successfulLoginWithLombokAndCustomAllureStepsAndSpecsTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
