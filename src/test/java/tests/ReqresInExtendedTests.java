@@ -8,6 +8,8 @@ import models.lombok.LoginResponseLombokModel;
 import models.pojo.LoginBodyPojoModel;
 import models.pojo.LoginResponsePojoModel;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import static helpers.CustomAllureListener.withCustomTemplates;
@@ -25,6 +27,8 @@ public class ReqresInExtendedTests {
     // POJO - Plain old Java object (старый добрый Java-объект)
     @Test
     @Story("Successful user login")
+    @Tags({@Tag("api"), @Tag("critical")})
+    @DisplayName("Successful login using POJO")
     void successfulLoginWithPojoTest(){
         LoginBodyPojoModel loginBodyPojoModel = new LoginBodyPojoModel();
         loginBodyPojoModel.setEmail("eve.holt@reqres.in");
@@ -58,6 +62,8 @@ public class ReqresInExtendedTests {
     // тест в стиле Lombok
     @Test
     @Story("Successful user login")
+    @Tags({@Tag("api"), @Tag("critical")})
+    @DisplayName("Successful login using Lombok")
     void successfulLoginWithLombokTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
@@ -82,6 +88,8 @@ public class ReqresInExtendedTests {
     // тест в стиле Lombok с Allure
     @Test
     @Story("Successful user login")
+    @Tags({@Tag("api"), @Tag("critical")})
+    @DisplayName("Successful login using Lombok and Allure")
     void successfulLoginWithLombokAndAllureTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
@@ -111,6 +119,8 @@ public class ReqresInExtendedTests {
     // в дериктории проекта создаем папку 'helpers' и внутри создаем класс 'CustomAllureListener' с нужным кодом
     @Test
     @Story("Successful user login")
+    @Tags({@Tag("api"), @Tag("critical")})
+    @DisplayName("Successful login using Lombok and customized Allure")
     void successfulLoginWithLombokAndCustomAllureTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
@@ -137,6 +147,7 @@ public class ReqresInExtendedTests {
     // тест в стиле Lombok с Allure с кастомизацией и со степами
     @Test
     @Story("Successful user login")
+    @Tags({@Tag("api"), @Tag("critical")})
     @DisplayName("Successful user login with lombok, custom allure and steps")
     void successfulLoginWithLombokAndCustomAllureStepsTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
@@ -165,6 +176,8 @@ public class ReqresInExtendedTests {
     // тест в стиле Lombok с Allure с кастомизацией, со степами и с спецификациями
     @Test
     @Story("Successful user login")
+    @Tags({@Tag("api"), @Tag("critical")})
+    @DisplayName("Successful login using Lombok, customized Allure, steps and specs")
     void successfulLoginWithLombokAndCustomAllureStepsAndSpecsTest(){
         LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
         loginBodyLombokModel.setEmail("eve.holt@reqres.in");
