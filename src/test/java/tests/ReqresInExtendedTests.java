@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import tests.annotations.Layer;
 
 import static helpers.CustomAllureListener.withCustomTemplates;
 import static io.qameta.allure.Allure.step;
@@ -21,7 +22,7 @@ import static io.restassured.http.ContentType.JSON;
 import static org.assertj.core.api.Assertions.*;
 import static specs.LoginSpecs.loginRequestSpec;
 import static specs.LoginSpecs.loginResponseSpec;
-
+@Layer("rest api")
 @Feature("Extended tests")
 @Owner("Ruslan Bogoutdinov")
 public class ReqresInExtendedTests {
