@@ -13,6 +13,8 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 import static org.assertj.core.api.Assertions.*;
+import static specs.LoginSpecs.loginRequestSpec;
+import static specs.LoginSpecs.loginResponseSpec;
 
 public class ReqresInExtendedTests {
     // тест в стиле POJO
@@ -144,6 +146,30 @@ public class ReqresInExtendedTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
+                .extract().as(LoginResponseLombokModel.class));
+
+        step("Проверка ответа", () -> assertThat(responseModel.getToken())
+                .isEqualTo("QpwL5tke4Pnpja7X4"));
+    }
+
+    // тест в стиле Lombok с Allure с кастомизацией, со степами и с спецификациями
+    @Test
+    void successfulLoginWithLombokAndCustomAllureStepsAndSpecsTest(){
+        LoginBodyLombokModel loginBodyLombokModel = new LoginBodyLombokModel();
+        loginBodyLombokModel.setEmail("eve.holt@reqres.in");
+        loginBodyLombokModel.setPassword("QpwL5tke4Pnpja7X4");
+
+        LoginResponseLombokModel responseModel = step("Отправка запроса", () ->
+                // в given() передаем наш статичный метод с описанным запросом
+        given(loginRequestSpec)
+                 // либо можно передать в spec()
+                // .spec(loginRequestSpec)
+                .body(loginBodyLombokModel)
+        .when()
+                .post("")
+        .then()
+                 // в .spec() передаем наш статичный метод с описанным ответом
+                .spec(loginResponseSpec)
                 .extract().as(LoginResponseLombokModel.class));
 
         step("Проверка ответа", () -> assertThat(responseModel.getToken())
