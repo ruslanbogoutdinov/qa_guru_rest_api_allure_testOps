@@ -7,9 +7,11 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import tests.annotations.Layer;
 
 import static io.qameta.allure.Allure.step;
 
+@Layer("web")
 public class Auth {
     @Test
     @AllureId("31437")
@@ -27,5 +29,9 @@ public class Auth {
         step("Check that main page is opened", () -> {
             Assertions.assertTrue(true);
         });
+    }
+    @Test
+    public void asd(){
+
     }
 }

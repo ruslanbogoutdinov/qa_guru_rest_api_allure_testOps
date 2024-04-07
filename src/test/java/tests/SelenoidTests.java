@@ -5,6 +5,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import tests.annotations.Layer;
 
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
@@ -12,6 +13,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 
+@Layer("web")
 @Feature("Selenide tests with PO")
 public class SelenoidTests {
     @Test

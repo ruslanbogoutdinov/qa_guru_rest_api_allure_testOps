@@ -3,11 +3,13 @@ package tests.withoutPojo;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
+import tests.annotations.Layer;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
+@Layer("rest api")
 @Feature("Not extended tests")
 public class ReqresInTests {
     // тест с post запросом

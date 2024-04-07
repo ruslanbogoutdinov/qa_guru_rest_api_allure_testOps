@@ -1,0 +1,20 @@
+### Установка связи IntelliJ с Allure TestOps ###
+
+1) Устанавливаем плагин 'Allure TestOps Support'
+2) Авторизируемся в Allure TestOps через 'Preferences' -> 'Tools' -> 'Allure TestOps', вводим Allure TestOps
+сервер и токен от проекта и проверяяем соединенеи
+
+### Признаки автотестов ###
+
+1) '@Owner', в Allure TestOps - 'Settings' -> 'Roles'
+2) '@Feature / @Story / @Suite', в Allure TestOps - 'Settings' -> 'Custom fields'
+3) Для интеграции с Jira, переходим в 'Issues' -> 'Create', в 'Key' вбиваем 'jira', в 'Value'
+выбираем связку с Jira и кликам по 'Submit'
+4) Также можем выбрать слои для тестов, в 'Test Layers'
+
+
+### Добавляем новые признаки ###
+
+1) В Allure TestOps переходим в 'Custom Fields' -> '+ Create'
+2) В 'Key' вписываем название аннотации в маленькой буквы
+3) В 'Value' выбираем нужное определение

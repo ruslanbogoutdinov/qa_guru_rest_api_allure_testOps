@@ -1,0 +1,51 @@
+TMS - Test Case Management System
+
+### Allure TestOps интеграция c Jenkins ###
+
+1) В настройках проекта в Jenkins, добавляем 'Allure: upload results'
+2) Выбираем нужный сервер
+3) Выбираем нужный проект в Allure TestOps
+ 3.1) Если проекта нет, то следует его создать в Allure TestOps
+ 3.2) Далее в 'Settings' -> 'Access' -> 'Outside Collaborators' - добавляем пользователя Jenkins 'jenkins_agent_service_acc' (см.доку) и даем ему
+ разрешение на write
+4) Добавляем результат и указываем там ту же дерикторию, что и для Allure Results, то-есть 'build/allure-results'
+5) Сохраняем настройки в Jenkins, запускаем job и переходим в 'Launches' в Allure TestOps
+6) Чтобы получить тест кейсы по запущенному тесту, отстанавливаем launch в Allure TestOps и переходим по вкладку
+'Test cases'
+
+### Кастомизация Allure TestOps ###
+
+1) @Feature("") - прописывается над всем классом
+2) @Story("") - прописывается над каждым тест кейсом
+
+### Подключаем плагин Allure TestOps ###
+
+1) Устанавливаем плагин Allure TestOpts Support
+2) Настраиваем доступ (url, token)
+3) Создаем класс и импортируем мануал тест кейсы из Allure TestOps комапндой 'Allure TestOps: Import Test Case'
+
+дока:
+https://docs.qameta.io/allure-testops/ecosystem/intellij-plugin/#:~:text=To%20authorize%20the%20plug%2Din%20in%20Allure%20Testops%20you%20need,section%20on%20Allure%20Testops%20side.
+
+### Запуск тестов в Allure TestOps ###
+
+1) Переходим во вкладку "Jobs"
+2) Кликаем по кнопке "New job"
+3) Настраиваем сервер и конфигурацию
+
+### Организация автоматического разбора ошибок Allure TestOps ####
+
+1) Открываем 'Launches'
+2) Отркываем нужный тестовый прогон
+3) В табе 'Defects' находим нужные девекты, кликаем по ним
+4) В открышемся окне снизу жмем по 'Link defects'
+5) Вписываем название дефекта
+6) В 'Rule name' вписываем 'message'
+7) В 'Error message pattern' вставляем начальный код ошибки
+8) Жмем по кнопке 'View matched result' и проверяем корректность 'Error message pattern' на regex
+9) Кликаем по 'Link defect'
+
+
+
+
+

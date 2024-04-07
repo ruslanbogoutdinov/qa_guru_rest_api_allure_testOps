@@ -1,0 +1,144 @@
+### Найстройка Jenkins ###
+
+1) Устанавливаем плагин
+ 1.1) Открываем вкладку 'Дополнительно' / 'Advanced settings'
+ 1.2) Переходим по сслыке 'https://docs.qameta.io/allure-testops/integrations/jenkins/#1-install-the-plugin-for-jenkins'
+ 1.3) Копируем ссылку на нужный Allure TestOps Jenkins плагин
+ 1.4) Скопированную ссылку вставляем в поле 'URL' во вкладке 'Дополнительно' / 'Advanced settings' в Jenkins
+ пример ссылки: 'https://dl.qameta.io/artifactory/bin/allure-testops-jenkins/4.0.0/allure-testops-jenkins-4.0.0.hpi'
+
+2) Кликаем по кнопке 'Deploy' для установки плагина
+ 2.1) После установки на всякий случай можно проверить установился ли действительно плагин
+
+3) После успешной установки плагина, переходим в 'Настроить Jenkins' -> 'Конфигурация системы'
+
+2) Найстройка Allure Server
+
+1) В поле 'Id' вбиваем 'allure-server'
+2) В поле 'Endpoint' вбиваем адресс нашего Allure TestOps, к примеру 'https://allure.autotests.cloud/'
+
+3) Добавляем 'Credentials'
+ 3.1) В 'Domain' выбираем 'Global credentials'
+ 3.2) В 'Kind' выбираем 'Secret text'
+ 3.3) В 'Scope' оставляем 'Global'
+ 3.4) В 'Secret' вставляем токен созданный в Allure TestOps, через 'Your profile' -> 'Create'
+ пример токена: 3a74c4b8-3751-40b8-bec2-877a92101872
+ 3.5) В 'ID' вписываем название для credential
+ 3.6) 'Description' заполняем по желанию
+
+4) Далее выбираем нужный credential и кликаем по кнопке 'Test connection', если все норм, то отобразится текст
+Successfully authorized as ${user_name} 'allure8'
+5) Открываем настройки нужного нам проекта
+ если 'Gradle' не установлен для Jenkins, можно обратиться к доке по установке:
+ https://plugins.jenkins.io/gradle/
+ к примеру 'Gradle 7.4.1'
+6) Листаем до секции 'Build Environment' и выбираем 'Allure: upload results'
+7) Выбираем ранее созданный Allure TestOps сервер и нужный проект (если проект не виден, то делаем его либо публичным,
+либо добавляем 'Outside Collaborators' в Allure TestOps)
+8) В 'Launch tags' добавляем 'regular,testing'
+9) Жмем по кнопке сохранения
+
+### Настройка переменных ###
+
+1) В Allure TestOps переходим в секцию 'Environment'
+2) Вписываем нужные переменные и определяем их по типу, например:
+ BRANCH_NAME -> Branch
+ BASE_URL -> Host
+ BROWSER_NAME -> Browser
+ и тд
+
+Можно также много разных имен переменных привести к единому типу, то-есть такая запись вполне допустима:
+
+branch -> Branch
+branch_name -> Branch
+BRANCH_NAME -> Branch
+
+Все три переменных будут восприниматься в Allure TestOps как 'Branch'
+
+3) Сохраняем изменения, запускаем параметризованный тест на Jenkins, смотрим отображение данных параметров в
+Allure TestOps
+4) Переходим в 'Jobs' на 'Allure TestOps', жмем на крутилку и прописываем данные переменные для данной Job
+5) Также мы можем фильтровать запуски по данным переменным во вкладке 'Launches'
+
+### Запуск тестов через Allure TestOps ###
+
+1) Открываем окно 'Test cases'
+2) Выбираем нужные тесты
+3) Кликаем по кнопке сверху 'Bulk actions' -> 'Run'
+4) В секции 'Environments' вписываем нужные переменные
+
+### Pipeline ###
+
+Pipeline - это удобный и краткий формат описания проекта, нежели через WEB-интерфейс
+
+Пример пайплайна:
+
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/ruslanbogoutdinov/qa_guru_rest_api_allure_testOps.git']]])
+            }
+        }
+        stage('Test') {
+            steps {
+                withAllureUpload(credentialsId: 'b_ruslan_api_token_two', name: '${JOB_NAME} - #${BUILD_NUMBER}', projectId: '4157', results: [[path: 'build/allure-results']], serverId: 'allure-server', tags: 'regular,testing') {
+                    sh './gradlew clean test'
+                }
+            }
+        }
+    }
+}
+
+1) Создаем пайплайн, добавляем параметры
+2) В 'Pipeline' -> 'Definition' выбираем 'Pipeline script'
+3) Идем в 'Pipeline Syntax'
+ 3.1) В 'Sample Step' выбираем 'withAllureUpload: Allure: upload results'
+ 3.2) Выбираем нужный сервер, credential и проект
+ 3.3) Вбиваем теги (если надо)
+ 3.4) Снизу в секции 'Results' жмем на 'Add results' -> 'Results' и прописываем путь 'build/allure-results'
+4) Жмем по кнопке 'Generate Pipeline Script'
+5) Сгенерированный пайплайн скрип вставляем в секцию 'steps' сверху
+6) Готовый скрипт вставляем в наш пайплайн
+
+### Добавляем скрипт Allure Reports в Pipeline ###
+
+В блок stage('Tests') вставляем следующий скрипт
+
+post {
+    always {
+        allure includeProperties:
+        false,
+        jdk: '',
+        results: [[path: 'build/allure-results']]
+    }
+}
+
+Итоговый вид:
+
+...
+stage('Test') {
+            steps {
+                withAllureUpload(credentialsId: 'b_ruslan_api_token_two', name: '${JOB_NAME} - #${BUILD_NUMBER}', projectId: '4157', results: [[path: 'build/allure-results']], serverId: 'allure-server', tags: 'regular,testing') {
+                    sh './gradlew clean test'
+                }
+            }
+            post {
+                always {
+                    allure includeProperties:
+                     false,
+                     jdk: '',
+                     results: [[path: 'build/allure-results']]
+                }
+            }
+        }
+...
+
+
+
