@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Apr 02 20:30:48 UZT 2024","Tue Apr 02 20:30:52 UZT 2024","3563","","tests.ReqresInExtendedTests","","tests.ReqresInExtendedTests","successfulLoginWithLombokAndAllureTest","successfulLoginWithLombokAndAllureTest()",""
