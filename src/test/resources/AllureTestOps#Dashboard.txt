@@ -1,0 +1,33 @@
+### Создаем дашборд ###
+Переходим в 'Dashboards' -> 'New dashboard', вводим имя для дашбоарда и кликаем по 'Submit'
+
+### Success Rate для всех прогонов ###
+1) Кликаем по '+ Add widget', вводим имя, для 'Type' выбираем 'Launch Analytics'
+2) Для 'Metric' выбираем 'Average Test Case Success Rate' и кликаем по кнопке 'Submit'
+
+### Launch Analytics ###
+
+### Success Rate для определенных тестов ###
+
+1) Кликаем по троеточию сверху справа -> '+ Add widget', вводим имя, для 'Type' выбираем
+'Launch Analytics' / клонируем существующий виджет
+2) Для 'Metric' выбираем 'Average Test Cases Success Rate'
+3) Для 'Test cases query' вписываем layer = "${название нужного layer} (query language)"
+
+### Duration ###
+
+1) Кликаем по троеточию сверху справа -> '+ Add widget', вводим имя, для 'Type' выбираем
+'Launch Analytics' / клонируем существующий виджет
+2) Для 'Metric' выбираем 'Average Test Cases Duration'
+3) Для 'Test cases query' вписываем layer = "${название нужного layer}"
+
+### Остальные метрики ###
+
+- Summary Test Cases duration - скольно времени в сутки суммарно ушло на прогоны авто-тестов
+- Test Cases count - колличество тест кейсов
+- Test Results count - колличество запусков тестов
+- Retries count - коллиество перезапусков
+- Test Results count exclude retries - колличество запусков тестов без перезапусков
+- Summary retries duration - общее колличество перезапущенных тестов
+
+### Launch  ###
